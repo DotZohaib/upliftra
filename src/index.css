@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@layer base {
+  /* Fonts are preloaded in index.html — declare font-display: swap here */
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-display: swap;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    /* Ensure content always clears the fixed mobile bottom nav (64px) */
+    scroll-padding-bottom: 72px;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-display: swap;
+  }
+
+  /* Prevent horizontal scroll bleed on mobile */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Focus ring for accessibility */
+  :focus-visible {
+    outline: 2px solid #047857;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* ─── Custom Scrollbars (all platforms) ──────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── Smooth page transitions ────────────────────────────────────── */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-out both;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.25s ease-out both;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out both;
+  }
+
+  /* Prevent text overflow bleed in cards */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Responsive overflow-safe table container */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Mobile bottom nav clearance (applies when bottom nav is visible) ─ */
+@media (max-width: 1023px) {
+  /* Add safe area support for notch phones */
+  .mobile-safe-bottom {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ─── Improved checkbox / radio appearance ──────────────────────── */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: #047857;
+}
+
+/* ─── Card hover polish ──────────────────────────────────────────── */
+.card-hover {
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.card-hover:hover {
+  box-shadow: 0 4px 20px -4px rgba(0,0,0,0.12);
+  transform: translateY(-1px);
+}
+
+/* ─── Gradient text utility ──────────────────────────────────────── */
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #047857, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Loading skeleton shimmer ──────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

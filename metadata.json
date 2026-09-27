@@ -1,0 +1,6 @@
+{
+  "name": "Upliftra Network",
+  "description": "Pakistan's premier professional career and opportunity ecosystem connecting students, graduates, mentors, and recruiters.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
